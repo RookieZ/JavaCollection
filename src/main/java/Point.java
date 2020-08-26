@@ -14,6 +14,14 @@ public class Point {
         this.y = y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -44,19 +52,7 @@ public class Point {
             @Override
             public int compare(Point p1, Point p2) {
                 // 按照先x再y，从小到大的顺序排序
-                if (p1.x != p2.x) {
-                    if (p1.x < p2.x) {
-                        return -1;
-                    } else {
-                        return 1;
-                    }
-                } else {
-                    if (p1.y < p2.y) {
-                        return -1;
-                    } else {
-                        return 1;
-                    }
-                }
+                return Comparator.comparing(Point::getX).thenComparing(Point::getY).compare(p1, p2);
             }
         });
         return ret;
